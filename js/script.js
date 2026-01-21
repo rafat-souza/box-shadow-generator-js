@@ -188,3 +188,19 @@ inset.addEventListener("input", (e) => {
 
   boxShadow.updateValue("inset", value);
 });
+
+// Copy rule
+const rulesArea = document.querySelector("#rules-area");
+const copyInstructions = document.querySelector("#copy-instructions");
+
+rulesArea.addEventListener("click", () => {
+  const rules = rulesArea.innerText.replace(/^\s*\n/gm, "");
+
+  navigator.clipboard.writeText(rules).then(() => {
+    copyInstructions.innerText = "Rule copied successfully";
+
+    setTimeout(() => {
+      copyInstructions.innerText = "Click in the board above to copy the rules";
+    }, 1000);
+  });
+});
